@@ -1,0 +1,93 @@
+{
+    "info": {
+        "name": "Trainer Plan APIs",
+        "description": "Postman collection for Trainer Plan CRUD APIs",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create New Plan",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"Email\": \"nikunj14bisani@gmail.com\",\n  \"Title\": \"Beginner Fitness Plan\",\n  \"Description\": \"Simple test description for trainer plan\",\n  \"Price\": 999,\n  \"Duration\": 30\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:7000/api/create/newPlan",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "create",
+                        "newPlan"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Edit Plan (by _id)",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"Title\": \"Updated Fitness Plan\",\n  \"Description\": \"Updated description\",\n  \"Price\": 1099,\n  \"Duration\": 45\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:7000/api/dashboard/update-plan/{{planId}}",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "dashboard",
+                        "update-plan",
+                        "{{planId}}"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get All Plans",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:7000/api/fetch/AllPlans",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "fetch",
+                        "AllPlans"
+                    ]
+                }
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "planId",
+            "value": ""
+        }
+    ]
+}

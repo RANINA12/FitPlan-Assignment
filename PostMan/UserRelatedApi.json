@@ -1,0 +1,231 @@
+{
+    "info": {
+        "name": "User Dashboard APIs",
+        "description": "Postman collection for user dashboard, subscribe, purchase and plan description APIs",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Public Dashboard (Unlogged User)",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:7000/api/dashboard/public",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "dashboard",
+                        "public"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "User Dashboard (Logged User)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"Email\": \"user@gmail.com\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:7000/api/dashboard/user",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "dashboard",
+                        "user"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Subscriber List",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"Email\": \"user@gmail.com\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:7000/api/dashboard/subscribers",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "dashboard",
+                        "subscribers"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Purchased Plans",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"Email\": \"user@gmail.com\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:7000/api/dashboard/purchased",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "dashboard",
+                        "purchased"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Plan Description (by UUID)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:7000/api/dashboard/description/{{plan_uuid}}",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "dashboard",
+                        "description",
+                        "{{plan_uuid}}"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Subscribe Trainer",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"UserEmail\": \"user@gmail.com\",\n  \"TrainerEmail\": \"trainer@gmail.com\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:7000/api/subscribe",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "subscribe"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Unsubscribe Trainer",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"UserEmail\": \"user@gmail.com\",\n  \"TrainerEmail\": \"trainer@gmail.com\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:7000/api/unsubscribe",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "unsubscribe"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Buy Plan",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"Email\": \"user@gmail.com\",\n  \"TrainerPlanId\": \"PLAN_ID_OR_UUID\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:7000/api/buy-plan",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7000",
+                    "path": [
+                        "api",
+                        "buy-plan"
+                    ]
+                }
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "plan_uuid",
+            "value": ""
+        }
+    ]
+}
