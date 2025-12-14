@@ -1,4 +1,3 @@
-
 # 🚀 Full Stack MERN Project
 
 A full-stack web application built using the MERN stack (MongoDB, Express, React, Node.js) with secure authentication, JWT access & refresh tokens, and email support using Nodemailer.
@@ -11,7 +10,7 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
 - React
 - Vite
 - Axios
-- CSS / Tailwind CSS
+- CSS
 
 ### Backend
 - Node.js
