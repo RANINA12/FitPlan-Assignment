@@ -18,7 +18,7 @@ function sortDataTOSuscribe(data, List) {
     })
 }
 const UserDashBoardLoggedUser = async (req, res) => {
-    console.log("api hit")
+
     const { Email } = req.query;
     if (!isValidEmail) {
         return res.status(400).json({
@@ -61,12 +61,8 @@ const UserDashBoardLoggedUser = async (req, res) => {
         );
         const finalListWithFollowstatus = finalList.map(item => ({
             ...item,
-            followed: SuscribeList.includes(item.TrainerEmail)
+            isFollowed: SuscribeList.includes(item.TrainerEmail)
         }));
-
-
-        console.log(finalListWithFollowstatus)
-
         return res.status(200).json({
             success: true,
             msg: "Success",
@@ -103,7 +99,7 @@ const UserDashBoardUnLoggedUser = async (req, res) => {
 
 const showSuscriberlist = async (req, res) => {
 
-    const { Email } = req.params;
+    const { Email } = req.query;
 
     if (!isValidEmail) {
         return res.status(400).json({
@@ -117,7 +113,7 @@ const showSuscriberlist = async (req, res) => {
     return res.status(200).json({
         success: true,
         msg: "Suscriber list fetched",
-        list: Suscriberlist.SuscribedTrainer
+        list: Suscriberlist
     })
 
 
@@ -125,7 +121,7 @@ const showSuscriberlist = async (req, res) => {
 
 const showpurchasedplan = async (req, res) => {
 
-    const { Email } = req.params;
+    const { Email } = req.query;
 
     if (!isValidEmail(Email)) {
         return res.status(400).json({
@@ -145,9 +141,7 @@ const showpurchasedplan = async (req, res) => {
         //Array of object we recieved // convert karna pdeg 
         const planId = findAllpurchasedPlan.map(id => id.TrainerPlanId);
         // all planId received  , now with this i want to fecth all details of the Trainerschema 
-        const Planlist = await TrainerPlan.find({
-            uuid: { _in: planId }
-        }).lean();
+        const Planlist = await TrainerPlan.find({ uuid: { $in: planId } }).lean();
 
         return res.status(200).json({
             success: true,
@@ -165,47 +159,52 @@ const showpurchasedplan = async (req, res) => {
 }
 
 const ShowDescription = async (req, res) => {
+    const { uuid } = req.params;
+    const { Email } = req.query;
 
-    const { TrainerPlanId, Email } = req.params;
-
-    if (!isValidEmail || !TrainerPlanId) {
+    if (!uuid || !Email) {
         return res.status(400).json({
             success: false,
             msg: "Invalid request"
         });
     }
+
     try {
-        const findvalidity = await purchased.findOne({ PurchasedBy: Email, TrainerPlanId: TrainerPlanId }, { ValidityUpto: 1, _id: 0 })
+        const findvalidity = await purchased.findOne(
+            { PurchasedBy: Email, TrainerPlanId: uuid },
+            { ValidityUpto: 1, _id: 0 }
+        );
+
         if (!findvalidity) {
             return res.status(400).json({
                 success: false,
-                msg: "No  such Plan "
+                msg: "No such Plan"
             });
         }
-        const today = new Date();
-        if (today > findvalidity.ValidityUpto) {
+
+        if (new Date() > findvalidity.ValidityUpto) {
             return res.status(400).json({
                 success: false,
-                msg: "Validity Expires"
+                msg: "Validity Expired"
             });
         }
-        else {
-            const content = await TrainerPlan.findOne({ uuid: TrainerPlanId });
-            return res.status(200).json({
-                success: true,
-                msg: "Success",
-                disply: content,
-            })
-        }
-    }
-    catch (error) {
-        console.error(error)
+
+        const content = await TrainerPlan.findOne({ uuid }).lean();
+
+        return res.status(200).json({
+            success: true,
+            msg: "Success",
+            plan: content
+        });
+
+    } catch (error) {
+        console.error(error);
         return res.status(500).json({
             success: false,
-            msg: "Internal Server Error",
+            msg: "Internal Server Error"
         });
     }
-}
+};
 
 module.exports = {
     UserDashBoardLoggedUser, UserDashBoardUnLoggedUser,

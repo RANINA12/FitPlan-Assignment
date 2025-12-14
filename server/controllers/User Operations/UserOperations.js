@@ -91,7 +91,7 @@ const buyPlan = async (req, res) => {
         validityUpto.setDate(today.getDate() + findvalidity.Duration);
         // Abb kya karna hai nikunj ?? create new suscribe paln 
         const unique_id = uuidv4();
-        const newPurchase = new purchased.create({
+        const newPurchase = new purchased({
             uuid: unique_id,
             PurchasedBy: Email,
             TrainerPlanId: TrainerPlanId,

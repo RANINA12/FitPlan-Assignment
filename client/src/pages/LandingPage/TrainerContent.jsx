@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { uploadnewPlans, editExitingPlan, deletePlan, getAllPlans, } from "../../api/auth";
 import { useToast } from "../../context/ToastContext";
 import { useAuth } from "../../context/AuthContext";
+import "./TrainerContent.css"
 const initialForm = {
     Title: "",
     Description: "",
@@ -16,12 +17,12 @@ function TrainerContent() {
     const [disabled, setdisabled] = useState(false);
     const { showToast } = useToast();
     const { user } = useAuth();
-
     useEffect(() => {
         const fetchPlans = async () => {
             try {
-                const res = await getAllPlans();
-                setPlans(res.data.data || res.data);
+                const res = await getAllPlans(user);
+                console.log("res", res.data.list);
+                setPlans(res.data.list);
             } catch {
                 setError("Failed to fetch plans");
             }
@@ -39,13 +40,18 @@ function TrainerContent() {
         setError("");
         setdisabled(true);
 
+        const NewDataForm = {
+            ...formData, Email: user
+        }
+        console.log(NewDataForm)
+
         try {
             let res;
 
             if (editId) {
-                res = await editExitingPlan(editId, formData);
+                res = await editExitingPlan(editId, NewDataForm);
             } else {
-                res = await uploadnewPlans(formData);
+                res = await uploadnewPlans(NewDataForm);
             }
 
             if (res.data?.success) {
@@ -54,7 +60,7 @@ function TrainerContent() {
                 setEditId(null);
 
                 const updated = await getAllPlans();
-                setPlans(updated.data.data || updated.data);
+                setPlans(updated.data.list);
             } else {
                 showToast("Operation failed", "error");
             }
@@ -84,7 +90,6 @@ function TrainerContent() {
             Duration: plan.Duration,
         });
     };
-
     const handleDelete = async (id) => {
         try {
             const res = await deletePlan(id);
@@ -143,12 +148,15 @@ function TrainerContent() {
                 {error && <p className="error">{error}</p>}
             </form>
 
+            Here your Plan list
+
             <div className="plan-list">
                 {plans.map((plan) => (
                     <div key={plan._id} className="plan-card">
                         <h4>{plan.Title}</h4>
                         <p>₹ {plan.Price}</p>
                         <p>{plan.Duration} days</p>
+                        <p>{plan.Description} days</p>
 
                         <button onClick={() => handleEdit(plan)}>Edit</button>
                         <button onClick={() => handleDelete(plan._id)}> Delete</button>

@@ -4,6 +4,8 @@ import { fetchDataforloggedUser } from "../../api/auth";
 import { useToast } from "../../context/ToastContext";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "./LoggedUser.css";
+
 function LoggedDashboard() {
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
@@ -13,7 +15,6 @@ function LoggedDashboard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                console.log("list")
                 const res = await fetchDataforloggedUser(user);
 
                 if (res.data?.success) {
@@ -50,7 +51,7 @@ function LoggedDashboard() {
             />
             {error && <p className="error">{error}</p>}
 
-            <button onClick={() => navigate("/userProfie")}> See Profile </button>
+            <button className="see-profile-btn" onClick={() => navigate("/User/Profile")}> See Profile </button>
         </div>
     );
 }

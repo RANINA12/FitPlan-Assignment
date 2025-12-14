@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../context/ToastContext";
 import { showSuscriberlist, showpurchasedplan } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
-import "./UserAction";
+import "./UserAction.css";
 function UserAction() {
     const { user, role } = useAuth();
     const navigate = useNavigate();
@@ -14,13 +14,13 @@ function UserAction() {
         if (!user || role !== "User") return;
         const fetchData = async () => {
             try {
-                const [subRes, buyRes] = await Promise.all([showSuscriberlist(), showpurchasedplan(),]);
+                const [subRes, buyRes] = await Promise.all([showSuscriberlist(user), showpurchasedplan(user),]);
 
                 if (subRes.data?.success) {
-                    setSubscribedTrainers(subRes.data.data);
+                    setSubscribedTrainers(subRes.data.list);
                 }
                 if (buyRes.data?.success) {
-                    setPurchasedPlans(buyRes.data.data);
+                    setPurchasedPlans(buyRes.data.list);
                 }
             } catch (err) {
                 showToast(err.response?.data?.msg || "Failed to load data", "error");
@@ -28,6 +28,17 @@ function UserAction() {
         };
         fetchData();
     }, [user, role]);
+
+    const handleSeeDetails = async (uuid) => {
+        if (!user) {
+            showToast("You need to login first", "error");
+            return;
+        }
+
+        navigate(`/plan/${uuid}`)
+
+    };
+
 
     if (!user || role !== "User") {
         return null;
@@ -37,11 +48,10 @@ function UserAction() {
         <div className="user-dashboard">
             <section>
                 <h2>Subscribed Trainers</h2>
-
                 {subscribedTrainers.length === 0 ? (
                     <p>No subscriptions yet</p>) : (<ul>
                         {subscribedTrainers.map((trainer, index) => (
-                            <li key={index}>{trainer}</li>
+                            <li key={index}>{trainer.SuscribedTrainer}</li>
                         ))}
                     </ul>
                 )}
@@ -57,10 +67,7 @@ function UserAction() {
                                 <h3>{plan.Title}</h3>
                                 <p>Trainer: {plan.TrainerEmail}</p>
                                 <p>Price: ₹ {plan.Price}</p>
-                                <p>Valid Till: {new Date(plan.ValidityUpto).toDateString()}</p>
-                                <button onClick={() => navigate(`/plan/${plan.uuid}`, {
-                                    state: { plan }
-                                })}> see Details</button>
+                                <button onClick={() => handleSeeDetails(plan.uuid)}> see Details</button>
                             </div>
                         ))}
                     </div>

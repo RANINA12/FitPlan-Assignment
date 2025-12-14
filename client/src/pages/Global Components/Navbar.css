@@ -3,11 +3,8 @@
     top: 0;
     width: 100%;
     height: 68px;
-    /* [cite: 6] */
     background: rgba(9, 9, 11, 0.8);
-    /* Dark mode with opacity */
     backdrop-filter: blur(12px);
-    /* Glassmorphism  */
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     display: flex;
@@ -17,7 +14,6 @@
 .navbar-container {
     width: 100%;
     max-width: 1312px;
-    /* [cite: 6] */
     padding: 0 32px;
     display: flex;
     align-items: center;
@@ -47,7 +43,6 @@
 .brand-name {
     font-weight: 700;
     font-size: 18px;
-    /* [cite: 13] */
     color: var(--text-primary);
 }
 
@@ -58,7 +53,6 @@
 
 .nav-item {
     color: var(--text-secondary);
-    /* [cite: 19] */
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -69,16 +63,12 @@
     color: var(--text-primary);
 }
 
-/* Auth Buttons */
 .btn-login {
     background: linear-gradient(180deg, #FAFAFA 0%, rgba(250, 250, 250, 0.8) 100%);
-    /* [cite: 41] */
     color: #18181B;
-    /* [cite: 46] */
     border: none;
     padding: 8px 16px;
     border-radius: 6px;
-    /* [cite: 43] */
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;

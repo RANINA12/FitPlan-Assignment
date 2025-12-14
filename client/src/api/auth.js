@@ -46,11 +46,17 @@ export const buyProduct = async (validationcode, Email, TrainerPlanId) => {
     });
 }
 
-export const uploadnewPlans = async () => {
+export const uploadnewPlans = async (formData) => {
+    console.log("hit for call")
+    return api.post("/api/create/newPlan", formData, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+};
 
-}
-
-export const editExitingPlan = async () => {
+export const editExitingPlan = async (id, formData) => {
+    return api.put(`/api/dashboard/update-plan/${id}`, formData);
 
 }
 
@@ -67,11 +73,23 @@ export const getAllPlans = async (Email) => {
         withCredentials: true
     });
 }
-export const showSuscriberlist = async () => {
-
+export const showSuscriberlist = async (Email) => {
+    return api.get("/api/dashboard/subscribers", {
+        params: { Email },
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        },
+        withCredentials: true
+    });
 }
-export const showpurchasedplan = async () => {
-
+export const showpurchasedplan = async (Email) => {
+    return api.get("/api/dashboard/purchased", {
+        params: { Email },
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        },
+        withCredentials: true
+    });
 }
 
 export const loginApi = async (Email, Password) => {
@@ -80,7 +98,6 @@ export const loginApi = async (Email, Password) => {
         Password: Password
     });
 };
-
 
 export const registerApi = async (Email, Password, ConfirmPassword, role) => {
     return api.post("/api/Register", {
@@ -119,6 +136,13 @@ export const passwordRecoveryApi = async (Email) => {
 
     });
 }
+
+export const showDescription = (Email, uuid) => {
+    return api.get(`/api/dashboard/description/${uuid}`, {
+        params: { Email }
+    });
+};
+
 
 export const resetPasswordApi = async (Email, NewPassword) => {
     return api.post("/api/ResetPassword", {

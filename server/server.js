@@ -24,6 +24,7 @@ app.use(
 
 connectDB();
 
+
 // Routes
 app.use("/api", userRoutes);
 app.use("/api", OtpRoutes);

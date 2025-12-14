@@ -10,17 +10,13 @@ function BuyPopup({ plan, user, onClose }) {
     const handleBuy = async () => {
         setDisabled(true);
         try {
-            const res = await buyProduct(validateoncode, user, plan.uuid);
-
+            const res = await buyProduct(otp, user, plan.uuid);
             if (res.data?.success) {
                 showToast(res.data.msg, "success");
                 onClose();
             }
         } catch (err) {
-            showToast(
-                err.response?.data?.msg || "Payment failed",
-                "error"
-            );
+            showToast(err.response?.data?.msg || "Payment failed", "error");
         } finally {
             setDisabled(false);
         }
@@ -31,18 +27,13 @@ function BuyPopup({ plan, user, onClose }) {
             <div className="popup">
                 <h3>{plan.Title}</h3>
                 <p>Price: ₹ {plan.Price}</p>
-
                 <input
                     type="text"
                     placeholder="Enter OTP use 123456"
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
                 />
-
-                <button disabled={disabled} onClick={handleBuy}>
-                    Pay
-                </button>
-
+                <button disabled={disabled} onClick={handleBuy}>Pay</button>
                 <button onClick={onClose}>Cancel</button>
             </div>
         </div>
