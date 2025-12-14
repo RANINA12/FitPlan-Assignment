@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+
+.otp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    margin-top: 8px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+
+.otp-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.otp-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #A1A1AA;
+    min-height: 40px;
+}
+
+
+.otp-timer span {
+    color: #FAFAFA;
+}
+
+.otp-timer .l-btn-wrapper {
+    width: auto;
+}
+
+.otp-timer .l-btn {
+    height: 32px;
+    padding: 0 16px;
+    font-size: 13px;
+    background: transparent;
+    border: 1px solid rgba(251, 146, 60, 0.3);
+    color: #FB923C;
+}
+
+.otp-timer .l-btn:hover {
+    background: rgba(251, 146, 60, 0.1);
+    border-color: #FB923C;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@media (max-width: 480px) {
+    .otp-inputs {
+        gap: 8px;
+    }
+}

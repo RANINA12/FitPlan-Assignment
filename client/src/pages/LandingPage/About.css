@@ -1,0 +1,167 @@
+.about-section {
+    position: relative;
+    padding: 120px 32px;
+    width: 100%;
+    min-height: 800px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    /* To clip the glows */
+}
+
+/* Orange Glows [cite: 85, 86] */
+.glow-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: rgba(251, 146, 60, 0.4);
+    top: 10%;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 300px;
+    height: 300px;
+    background: rgba(251, 146, 60, 0.2);
+    bottom: 10%;
+    right: -50px;
+}
+
+.about-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    z-index: 1;
+}
+
+.about-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.badge {
+    border: 1px solid var(--border-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    width: fit-content;
+    font-size: 12px;
+    color: var(--accent-orange);
+    background: rgba(251, 146, 60, 0.1);
+}
+
+.about-title {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #FAFAFA 0%, #A1A1AA 100%);
+    /* [cite: 63] */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-desc {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 500px;
+}
+
+/* 3D Visuals Area */
+.about-visuals {
+    flex: 1;
+    position: relative;
+    height: 500px;
+    perspective: 1000px;
+    /* Creates 3D space */
+}
+
+.card-stack {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(20, 20, 20, 0.8);
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    /* [cite: 42] */
+    transition: transform 0.4s ease;
+}
+
+.card-stack img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+/* Overlapping Logic */
+.card-1 {
+    top: 0;
+    left: 0;
+    transform: rotate(-5deg) translateZ(0);
+    z-index: 1;
+}
+
+.card-2 {
+    top: 40px;
+    left: 60px;
+    transform: rotate(0deg) translateZ(20px);
+    z-index: 2;
+    border: 1px solid var(--accent-orange);
+    /* Highlighted card */
+}
+
+.card-3 {
+    top: 80px;
+    left: 120px;
+    transform: rotate(5deg) translateZ(40px);
+    z-index: 3;
+}
+
+/* Hover Effect */
+.about-visuals:hover .card-1 {
+    transform: rotate(-10deg) translateX(-20px);
+}
+
+.about-visuals:hover .card-2 {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.about-visuals:hover .card-3 {
+    transform: rotate(10deg) translateX(20px);
+}
+
+@media (max-width: 900px) {
+    .about-container {
+        flex-direction: column;
+    }
+
+    .about-visuals {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card-stack {
+        width: 200px;
+        height: 300px;
+    }
+}

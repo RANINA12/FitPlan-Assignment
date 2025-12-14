@@ -1,0 +1,139 @@
+/* --- Popup Backdrop (Overlay) --- */
+.popup-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Dim background */
+    backdrop-filter: blur(4px);
+    /* Blur effect behind popup */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    /* Ensure it sits on top of everything */
+    padding: 20px;
+}
+
+/* --- Popup Container --- */
+.popup {
+    width: 100%;
+    max-width: 400px;
+    background: #09090B;
+    /* Fallback */
+    background: rgba(250, 250, 250, 0.02);
+    /* Glassy Background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Thin border */
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.5);
+    /* Deep Shadow */
+    animation: popupFadeIn 0.3s ease-out;
+}
+
+/* --- Typography --- */
+.popup h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #FAFAFA;
+    margin: 0;
+}
+
+.popup p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #A1A1AA;
+    /* Secondary Text */
+    margin: 0;
+}
+
+/* --- Input Field --- */
+.popup input {
+    width: 100%;
+    height: 40px;
+    padding: 10px 12px;
+    background: rgba(250, 250, 250, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #FAFAFA;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    /* Important for padding */
+    transition: border-color 0.2s;
+}
+
+.popup input:focus {
+    border-color: #FAFAFA;
+}
+
+.popup input::placeholder {
+    color: #52525B;
+}
+
+/* --- Pay Button (Primary) --- */
+.popup button:first-of-type {
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(180deg, #FAFAFA 0%, rgba(250, 250, 250, 0.8) 100%);
+    border: none;
+    border-radius: 6px;
+    color: #18181B;
+    /* Dark text on light button */
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.2s;
+}
+
+.popup button:first-of-type:hover {
+    opacity: 0.9;
+}
+
+.popup button:first-of-type:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- Cancel Button (Secondary) --- */
+.popup button:last-of-type {
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #A1A1AA;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.popup button:last-of-type:hover {
+    color: #FAFAFA;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* --- Animation --- */
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

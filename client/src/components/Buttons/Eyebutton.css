@@ -1,0 +1,23 @@
+/* --- Eye Button Styles --- */
+.eye-btn-wrapper {
+    position: absolute;
+    right: 12px;
+    top: 38px;
+    /* Label height ke hisab se adjust karein */
+    z-index: 10;
+}
+
+.eye-btn {
+    background: transparent;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #A1A1AA;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.eye-btn:hover {
+    color: #FAFAFA;
+}

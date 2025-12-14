@@ -1,0 +1,35 @@
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-dark: #09090B;
+    /*  */
+    --text-primary: #FAFAFA;
+    /* [cite: 14] */
+    --text-secondary: #A1A1AA;
+    /* [cite: 55] */
+    --accent-orange: #FB923C;
+    /* [cite: 326] */
+    --border-color: rgba(255, 255, 255, 0.1);
+    /* [cite: 320] */
+    --glass-bg: rgba(250, 250, 250, 0.02);
+    /* [cite: 151] */
+    --font-main: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Common Texture Class for "Good Texture" feel */
+.texture-grid {
+    background-size: 40px 40px;
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}

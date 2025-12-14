@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-dark: #09090B;
+    --text-primary: #FAFAFA;
+    --text-secondary: #A1A1AA;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --card-bg: rgba(250, 250, 250, 0.02);
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 48px 32px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 16px;
+    width: 320px;
+    min-width: 280px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+}
+
+.card h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: var(--text-primary);
+    margin: 0;
+    width: 100%;
+}
+
+.card p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-secondary);
+    margin: 0;
+    width: 100%;
+}
+
+.card p:nth-of-type(2) {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 8px 0;
+}
+
+.card button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 8px;
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: opacity 0.2s ease, background 0.2s ease;
+    margin-top: 8px;
+}
+
+.card button:last-child {
+    background: linear-gradient(180deg, #FAFAFA 0%, rgba(250, 250, 250, 0.8) 100%);
+    box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border: none;
+    color: #18181B;
+    font-weight: 600;
+}
+
+.card button:last-child:hover {
+    opacity: 0.9;
+}
+
+.card button:not(:last-child) {
+    background: rgba(250, 250, 250, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.card button:not(:last-child):hover {
+    background: rgba(250, 250, 250, 0.1);
+    color: var(--text-primary);
+}
+
+.cards-wrapper>p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    font-weight: 500;
+}

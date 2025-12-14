@@ -1,0 +1,121 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 68px;
+    /* [cite: 6] */
+    background: rgba(9, 9, 11, 0.8);
+    /* Dark mode with opacity */
+    backdrop-filter: blur(12px);
+    /* Glassmorphism  */
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1312px;
+    /* [cite: 6] */
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo-placeholder {
+    width: 32px;
+    height: 32px;
+    background: var(--glass-bg);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.nav-logo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 18px;
+    /* [cite: 13] */
+    color: var(--text-primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-item {
+    color: var(--text-secondary);
+    /* [cite: 19] */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+}
+
+/* Auth Buttons */
+.btn-login {
+    background: linear-gradient(180deg, #FAFAFA 0%, rgba(250, 250, 250, 0.8) 100%);
+    /* [cite: 41] */
+    color: #18181B;
+    /* [cite: 46] */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    /* [cite: 43] */
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.username {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.avatar-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-orange);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    background: var(--glass-bg);
+    color: var(--accent-orange);
+}
