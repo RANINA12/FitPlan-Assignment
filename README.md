@@ -1,9 +1,6 @@
 # 🚀 Full Stack MERN Project
-
 A full-stack web application built using the MERN stack (MongoDB, Express, React, Node.js) with secure authentication, JWT access & refresh tokens, and email support using Nodemailer.
-
 ---
-
 ## 📦 Tech Stack
 
 ### Frontend
@@ -18,37 +15,6 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
 - MongoDB (Mongoose)
 - JWT (Access Token & Refresh Token)
 - Nodemailer
-
----
-
-## 📁 Project Structure
-
-```
-
-project-root/
-│
-├── client/          # Frontend
-│
-├── server/          # Backend
-│   ├── controllers/
-│   ├── routes/
-│   ├── models/
-│   ├── db/
-│   └── server.js
-│
-└── README.md
-
-````
-
----
-
-## ⚙️ Prerequisites
-
-Make sure you have installed:
-- Node.js (v16 or above)
-- npm
-- MongoDB (Local or MongoDB Atlas)
-- Git
 
 ---
 
@@ -76,7 +42,6 @@ Frontend will run on:
 ```
 http://localhost:5173
 ```
-
 ---
 
 ## 🛠 Backend Setup (Server)
@@ -106,7 +71,6 @@ NODE_MAILER_PASS=your_email_app_password
 ⚠️ Important:
 
 * Use **Gmail App Password** for `NODE_MAILER_PASS`
-* Do NOT commit `.env` to GitHub
 
 ---
 
@@ -131,7 +95,6 @@ Create a `.env` file in the **client** folder:
 ```env
 VITE_BACKEND_URL=http://localhost:7000
 ```
-
 ---
 
 ## 🔒 Features
@@ -141,27 +104,6 @@ VITE_BACKEND_URL=http://localhost:7000
 * Secure APIs
 * Email based OTP verification
 * MongoDB database integration
-
----
-
-## 🚫 .gitignore
-
-Make sure `.gitignore` contains:
-
-```
-node_modules
-.env
-dist
-```
-
----
-
-## 🧪 Common Issues
-
-* MongoDB not connecting → Check `MONGODB_URI`
-* Token errors → Verify JWT secrets
-* Email not sending → Check Gmail App Password
-* CORS issue → Verify backend CORS config
 
 ---
 
@@ -176,12 +118,6 @@ npm run dev
 cd server
 npm run dev
 ```
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
 
 ---
 
