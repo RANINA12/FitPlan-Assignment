@@ -1,6 +1,4 @@
----
 
-```md
 # 🚀 Full Stack MERN Project
 
 A full-stack web application built using the MERN stack (MongoDB, Express, React, Node.js) with secure authentication, JWT access & refresh tokens, and email support using Nodemailer.
@@ -193,6 +191,3 @@ This project is licensed under the MIT License.
 **Nikunj Bisani**
 Full Stack Developer | MERN | Java | DSA
 
-```
-
----
