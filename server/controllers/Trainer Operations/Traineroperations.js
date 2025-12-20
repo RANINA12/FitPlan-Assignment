@@ -62,7 +62,7 @@ const EditFitnessPlan = async (req, res) => {
             {
                 Title,
                 Description,
-                Price: Number(Price), // 🔥 important
+                Price: Number(Price),
                 Duration
             },
             { new: true, runValidators: true }
@@ -90,8 +90,6 @@ const EditFitnessPlan = async (req, res) => {
     }
 };
 
-
-
 const getAllPlans = async (req, res) => {
     try {
         const { Email } = req.query;
@@ -118,4 +116,35 @@ const getAllPlans = async (req, res) => {
     }
 };
 
-module.exports = { newFitnessPlan, EditFitnessPlan, getAllPlans };
+const DeletePlan = async (req, res) => {
+    console.log("api hit");
+    const uuid = req.params.uuid;
+    console.log("uuid got", uuid);
+    try {
+        const d = await TrainerPlan.findOneAndDelete({ uuid: uuid })
+
+        if (!d) {
+            return res.status(404).json({
+                success: false,
+                msg: "That is not found"
+            })
+        }
+        else {
+            return res.status(200).json({
+                success: true,
+                msg: "Successfully  deleted "
+            })
+        }
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            msg: "Internal  Server Error"
+        })
+    }
+
+
+}
+
+module.exports = { newFitnessPlan, EditFitnessPlan, getAllPlans, DeletePlan };

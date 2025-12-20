@@ -1,5 +1,5 @@
-
 import api from "./axios";
+
 export const fetchDataforUnloggedUser = async () => {
     return api.get("/api/dashboard/public", {});
 };
@@ -7,10 +7,6 @@ export const fetchDataforUnloggedUser = async () => {
 export const fetchDataforloggedUser = async (Email) => {
     return api.get("/api/dashboard/user", {
         params: { Email },
-        headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-        },
-        withCredentials: true
     });
 };
 
@@ -18,20 +14,12 @@ export const FollowRequest = async (EmailTrainer, EmailUser) => {
 
     return api.post("/api/subscribe", {
         EmailTrainer: EmailTrainer, EmailUser: EmailUser,
-        headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-        },
-        withCredentials: true
     });
 }
 
 export const unFollowRequest = async (EmailTrainer, EmailUser) => {
     return api.post("/api/unsubscribe", {
         EmailTrainer: EmailTrainer, EmailUser: EmailUser,
-        headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-        },
-        withCredentials: true
     });
 }
 
@@ -39,10 +27,6 @@ export const buyProduct = async (validationcode, Email, TrainerPlanId) => {
 
     return api.post("/api/buy-plan", {
         validationcode: validationcode, Email: Email, TrainerPlanId: TrainerPlanId,
-        headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-        },
-        withCredentials: true
     });
 }
 
@@ -60,8 +44,9 @@ export const editExitingPlan = async (id, formData) => {
 
 }
 
-export const deletePlan = async () => {
-
+export const deletePlan = async (id) => {
+    console.log("hitting the api");
+    return api.delete(`/api/delete/plan/${id}`)
 }
 
 export const getAllPlans = async (Email) => {

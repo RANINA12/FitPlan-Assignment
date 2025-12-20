@@ -21,7 +21,7 @@ function TrainerContent() {
         const fetchPlans = async () => {
             try {
                 const res = await getAllPlans(user);
-                console.log("res", res.data.list);
+                // console.log("res", res.data.list);
                 setPlans(res.data.list);
             } catch {
                 setError("Failed to fetch plans");
@@ -90,17 +90,19 @@ function TrainerContent() {
             Duration: plan.Duration,
         });
     };
-    const handleDelete = async (id) => {
+    const handleDelete = async (uuid) => {
         try {
-            const res = await deletePlan(id);
+            console.log("Delete Clicked")
+            console.log("Received thhe uuid", uuid);
+            const res = await deletePlan(uuid);
 
             if (res.data?.success) {
                 showToast(res.data.msg, "success");
-                setPlans((prev) => prev.filter((p) => p._id !== id));
+                setPlans((prev) => prev.filter((p) => p.uuid !== uuid));
             }
         } catch (err) {
             if (err.response?.status === 404) {
-                showToast("Plan not found", "error");
+                showToast(res.data.msg, "error");
             } else {
                 showToast("Delete failed", "error");
             }
@@ -159,7 +161,7 @@ function TrainerContent() {
                         <p>{plan.Description} days</p>
 
                         <button onClick={() => handleEdit(plan)}>Edit</button>
-                        <button onClick={() => handleDelete(plan._id)}> Delete</button>
+                        <button onClick={() => handleDelete(plan.uuid)}> Delete</button>
                     </div>
                 ))}
             </div>

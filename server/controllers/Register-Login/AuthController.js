@@ -188,7 +188,9 @@ const GoogleSignUpIN = async (req, res) => {
 }
 
 const RefreshTokenController = async (req, res) => {
+    console.log("cookies:", req.cookies);
     const refreshToken = req.cookies.refreshToken;
+    console.log("refreshToken", refreshToken);
     if (!refreshToken) {
         return res.status(401).json({
             success: false,
