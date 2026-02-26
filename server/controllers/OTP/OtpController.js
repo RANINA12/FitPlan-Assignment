@@ -36,7 +36,7 @@ const OtpSend = async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            msg: "OTP sent to your email",
+            msg: "OTP sent to your register email",
         });
     } catch (error) {
         console.error(error);
@@ -46,6 +46,10 @@ const OtpSend = async (req, res) => {
         });
     }
 };
+
+const OTPResend = async (req, res) => {
+    // here your OTP RESEND  Code logic will go 
+}
 
 const OtpVerify = async (req, res) => {
     const { Email, Otp } = req.body;
